@@ -3,4 +3,37 @@
       themes: light --default;
 }
 
+.active-link{
+      @apply bg-clip-text bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-transparent text-2xl
+      !underline  !decoration-[#9F62F2]
 
+}
+
+.active-btn{
+      @apply  bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white hover:bg-white
+
+}
+
+.text-gradient{
+      @apply bg-clip-text bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-transparent
+
+
+}
+
+@theme {
+  --animate-wiggle: wiggle 1s linear infinite;
+  @keyframes wiggle {
+
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+
+    }
+    100% {
+      transform: rotate(360deg);
+
+    }
+  }
+}

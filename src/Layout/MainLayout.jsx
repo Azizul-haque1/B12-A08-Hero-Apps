@@ -5,11 +5,11 @@ import { Outlet } from 'react-router';
 
 const MainLayout = () => {
     return (
-        <div className='bg-[]'>
+        <div className=''>
             <Navbar />
-            <div className="bg-[#F5F5F5] min-h-screen">
+            <main className="bg-[#F5F5F5] min-h-screen">
                 <Outlet />
-            </div>
+            </main>
             <Footer />
 
         </div>
