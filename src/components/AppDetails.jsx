@@ -7,19 +7,24 @@ import reviewIcon from '../assets/icon-review.png'
 import useApps from '../hooks/useApps';
 import Container from './Container';
 import Loading from './Loading';
-import { Bar, BarChart, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { getStoredData, } from '../utilites/LocalStorage';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 const AppDetails = () => {
     const [install, setInstall] = useState(false)
-    const { appsData, loading } = useApps();
+    const { appsData, loading, error } = useApps();
     const { id } = useParams();
     const convertedId = parseInt(id);
 
 
+
     const isId = appsData.map(app => app.id).includes(convertedId);
+
     const appFind = appsData.find(app => app.id === convertedId);
+
+
 
     useEffect(() => {
         // check if already installed
@@ -29,17 +34,28 @@ const AppDetails = () => {
             if (isFindId) setInstall(isFindId)
         }
     }, [convertedId])
+    if (error) return <AppError />
     if (loading) return <Loading />
     const { title, image, description, companyName, ratings, ratingAvg, downloads, reviews, size, ratings: [{ name, count }] } = appFind;
 
     const reversedRatings = [...ratings].reverse()
-    console.log(reversedRatings);
 
 
+    const notify = () => toast.success(`${title} Installed Successfully`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+    });
 
 
     const handleInstall = isInstall => {
         setInstall(isInstall)
+        notify()
         const existingData = JSON.parse(localStorage.getItem('installedApps'))
 
         let update = []
@@ -48,7 +64,6 @@ const AppDetails = () => {
             const isExist = existingData.some(app => app.id == convertedId)
             if (isExist) return alert('already added')
             update = [...existingData, appFind]
-
 
         }
         else {
@@ -69,7 +84,7 @@ const AppDetails = () => {
                     <Container>
                         <div className='' >
 
-                            <div className=" flex py-20   space-x-10 border-b-2 pb-5 border-[#d9d9d9] ">
+                            <div className=" px-4 md:px-0 flex flex-col md:flex-row py-20 space-x-10 border-b-2 pb-5 border-[#d9d9d9] ">
                                 <div className='h-[350px] bg-white'>
                                     <img src={image} className='p-3 h-full  w-full object-cover' alt="" />
                                 </div>
@@ -106,26 +121,29 @@ const AppDetails = () => {
 
 
                                     </button>
+                                    <ToastContainer />
 
                                 </div>
 
                             </div>
 
 
-                            <div className="chart h-[500px] w-full mt-">
-                                <BarChart layout='vertical' width={1000} height={400} data={reversedRatings} >
-                                    <XAxis type='number' axisLine={false} dataKey='count' />
-                                    <YAxis axisLine={false} type='category' dataKey='name' />
-                                    <Tooltip />
-                                    <Bar dataKey="count" fill="#B37FEB" barSize={30}>
+                            <div className="chart h-[500px] md:w-11/12 pt-5 ">
+                                <ResponsiveContainer>
+                                    <BarChart layout='vertical' width={1200} height={400} data={reversedRatings} >
+                                        <XAxis type='number' axisLine={false} dataKey='count' />
+                                        <YAxis axisLine={false} type='category' dataKey='name' />
+                                        <Tooltip />
+                                        <Bar dataKey="count" fill="#FF8811" barSize={30}>
 
-                                    </Bar>
+                                        </Bar>
 
-                                </BarChart>
+                                    </BarChart>
+                                </ResponsiveContainer>
                             </div>
 
 
-                            <div className="pb-10 px-2">
+                            <div className="pb-10 pt-3 border-t-2 border-[#d9d9d9]  px-2">
                                 <h1 className='my-2 text-3xl'>Description</h1>
                                 <p className='text-[#627382] text-xl text-justify leading-9'>{description}</p>
 
@@ -138,7 +156,7 @@ const AppDetails = () => {
 
                     :
                     <div className='flex flex-col items-center '>
-                        <AppError />
+
                     </div >
             }
 

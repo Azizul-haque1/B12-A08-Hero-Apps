@@ -23,6 +23,7 @@ export const router = createBrowserRouter([
                 path: '/apps',
                 Component: Apps,
 
+
             },
             {
                 path: '/installation',
@@ -34,7 +35,7 @@ export const router = createBrowserRouter([
             {
                 path: '/apps/:id',
                 Component: AppDetails,
-                // errorElement: AppError
+                errorElement: <AppError />
             },
         ]
 

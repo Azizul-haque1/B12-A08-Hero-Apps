@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 const TrendingApp = ({ appsData }) => {
 
-    const trendingData = appsData.slice(2, 12)
+    const trendingData = appsData.slice(2, 10)
 
 
     return (

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import Container from '../components/Container';
 import AppsCard from '../components/AppsCard';
 
@@ -14,9 +14,21 @@ const Apps = () => {
     const [search, setSearch] = useState('')
     const { appsData, loading } = useApps()
 
+    const actualValue = search.trim().toLowerCase()
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (search) return <Loading />
+
+        }, 100);
+
+
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [search])
 
     if (loading) return <Loading />
-    const actualValue = search.trim().toLowerCase()
+
     const foundApps = actualValue ? appsData.filter(app => app.title.toLowerCase().includes(actualValue)) : appsData
 
 
@@ -57,12 +69,16 @@ const Apps = () => {
                                 {
 
                                     foundApps.map(app =>
-                                        <AppsCard key={app.id} app={app}></AppsCard>)
+                                        <>
+                                            <Suspense fallback={<h2>loading....</h2>}>
+                                                <AppsCard key={app.id} app={app}></AppsCard>
+                                            </Suspense>
+                                        </>)
                                 }
 
 
                             </div>
-                            : <AppError />
+                            : <h1 className='flex items-center justify-center mt-[200px] text-7xl text-gray-400'>No App Found</h1>
                     }
                 </div >
             </Container>
