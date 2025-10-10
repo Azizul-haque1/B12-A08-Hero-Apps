@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         Component: MainLayout,
-        // errorElement: <h1>h3</h1>,
+        errorElement: <NoFoundError />,
         children: [
             {
                 index: true,
@@ -39,11 +39,6 @@ export const router = createBrowserRouter([
         ]
 
 
-    },
-    {
-        path: '*',
-        // element: <h1>error  global</h1>,
-        element: <NoFoundError></NoFoundError>,
     },
 
 

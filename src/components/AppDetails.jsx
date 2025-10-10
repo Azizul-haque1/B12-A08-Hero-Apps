@@ -30,7 +30,11 @@ const AppDetails = () => {
         }
     }, [convertedId])
     if (loading) return <Loading />
-    const { title, image, companyName, ratings, ratingAvg, downloads, reviews, size, ratings: [{ name, count }] } = appFind;
+    const { title, image, description, companyName, ratings, ratingAvg, downloads, reviews, size, ratings: [{ name, count }] } = appFind;
+
+    const reversedRatings = [...ratings].reverse()
+    console.log(reversedRatings);
+
 
 
 
@@ -63,9 +67,9 @@ const AppDetails = () => {
                 isId ?
 
                     <Container>
-                        <div  >
+                        <div className='' >
 
-                            <div className=" flex py-20  space-x-10 border-b-2 pb-5 border-[#d9d9d9] ">
+                            <div className=" flex py-20   space-x-10 border-b-2 pb-5 border-[#d9d9d9] ">
                                 <div className='h-[350px] bg-white'>
                                     <img src={image} className='p-3 h-full  w-full object-cover' alt="" />
                                 </div>
@@ -94,7 +98,7 @@ const AppDetails = () => {
 
                                     </div>
 
-                                    <button onClick={() => handleInstall(true)} className="btn bg-[#00D390] disabled:bg-red-300 hover:bg-white hover:border-[#00D390] hover:text-[#00D390] text-white ">
+                                    <button disabled={install} onClick={() => handleInstall(true)} className="py-2 px-3 rounded-lg bg-[#00D390]  disabled:bg-[#00D390] disabled:hover:bg-none  disabled:hover:text-white hover:bg-white hover:border-[#00D390] duration-300 hover:text-[#00D390] text-white ">
                                         {
                                             `${install ? "Installed" : `Install Now (${size}MB) `}`
 
@@ -108,9 +112,8 @@ const AppDetails = () => {
                             </div>
 
 
-                            <div className="chart h-80">
-
-                                <BarChart layout='vertical' width={600} height={300} data={ratings} >
+                            <div className="chart h-[500px] w-full mt-">
+                                <BarChart layout='vertical' width={1000} height={400} data={reversedRatings} >
                                     <XAxis type='number' axisLine={false} dataKey='count' />
                                     <YAxis axisLine={false} type='category' dataKey='name' />
                                     <Tooltip />
@@ -119,15 +122,19 @@ const AppDetails = () => {
                                     </Bar>
 
                                 </BarChart>
+                            </div>
+
+
+                            <div className="pb-10 px-2">
+                                <h1 className='my-2 text-3xl'>Description</h1>
+                                <p className='text-[#627382] text-xl text-justify leading-9'>{description}</p>
+
 
                             </div>
+
                         </div>
 
                     </Container >
-
-
-
-
 
                     :
                     <div className='flex flex-col items-center '>
