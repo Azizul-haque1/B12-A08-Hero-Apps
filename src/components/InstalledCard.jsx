@@ -1,22 +1,23 @@
 import React from 'react';
-import demoImage from '../assets/demo-app (2).webp';
+
 import ratingIcon from '../assets/icon-ratings.png'
 import { Download } from 'lucide-react';
 
 const InstalledCard = ({ app, handleUninstall }) => {
-    const { id } = app
+    const { id, title, image, downloads, ratingAvg, size } = app
 
     return (
         <div className=' flex p-4  items-center justify-between w-full bg-white rounded-lg'>
             <div className="flex items-center">
                 <div className="">
-                    <img src={demoImage} className='w-[80px] rounded-lg mr-4' alt="" />
+                    <img src={image} className='w-[80px] rounded-lg mr-4' alt="" />
                 </div>
                 <div className="flex flex-col h-full ">
-                    <h1>Forest: Focus for Productivity</h1>
+                    <h1 className='text-left font-bold text-xl'>{title}</h1>
                     <div className="flex gap-3 items-center ">
-                        <figure className='flex items-center space-x-3'><Download size={16} className='text-[10px] text-[#00D390]' />9M</figure>
-                        <figure className='flex items-center'><img src={ratingIcon} className='w-4 h-4' alt="" />5</figure>
+                        <figure className='flex !text-[#00D390] items-center space-x-5'><Download size={16} className='text-[10px] mr-1' />{downloads}</figure>
+                        <figure className='flex items-center text-[#FF8811]'><img src={ratingIcon} className='w-4 h-4 mr-1' alt="" />{ratingAvg}</figure>
+                        <div className="text-[#627382]">{size}MB</div>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ import ratingIcon from '../assets/icon-ratings.png'
 import { Link } from 'react-router';
 
 const AppsCard = ({ app }) => {
-    const { title, id, image } = app
+    const { title, id, image, ratingAvg, downloads } = app
 
     return (
         <Link to={`/apps/${id}`}>
@@ -21,10 +21,10 @@ const AppsCard = ({ app }) => {
                     <div className=" flex justify-between">
                         <span className='btn'>
                             <img className='w-3' src={downloadIcon} alt="" />
-                            9M</span>
+                            {downloads}</span>
                         <span className='btn'>
                             <img className='w-3' src={ratingIcon} alt="" />
-                            9M</span>
+                            {ratingAvg}</span>
 
                     </div>
 

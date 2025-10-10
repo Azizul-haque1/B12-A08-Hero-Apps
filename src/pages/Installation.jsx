@@ -46,7 +46,7 @@ const Installation = () => {
 
                     <div className=" grid grid-cols-1  place-items-center gap-3">
                         {
-                            installed ? installed.map(app => <InstalledCard handleUninstall={handleUninstall} app={app}></InstalledCard>)
+                            installed.length ? installed.map(app => <InstalledCard handleUninstall={handleUninstall} app={app}></InstalledCard>)
                                 : <h1>hello</h1>
                         }
 

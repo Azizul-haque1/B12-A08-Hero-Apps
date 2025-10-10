@@ -30,7 +30,7 @@ const AppDetails = () => {
         }
     }, [convertedId])
     if (loading) return <Loading />
-    const { title, image, companyName, ratings, ratingAvg, size, ratings: [{ name, count }] } = appFind;
+    const { title, image, companyName, ratings, ratingAvg, downloads, reviews, size, ratings: [{ name, count }] } = appFind;
 
 
 
@@ -77,17 +77,17 @@ const AppDetails = () => {
                                             <div className="text-left space-y-2 flex flex-col  ">
                                                 <img className='w-10' src={downloadIcon} alt="" />
                                                 <p className='text-[#9d9b9b]'>Downloads</p>
-                                                <h3 className='text-3xl font-bold'>29.6M</h3>
+                                                <h3 className='text-3xl font-bold'>{downloads}</h3>
                                             </div>
                                             <div className="text-left space-y-2 flex flex-col  ">
                                                 <img className='w-10' src={ratingIcon} alt="" />
                                                 <p className='text-[#9d9b9b]'>Average Ratings</p>
-                                                <h3 className='text-3xl font-bold'>29.6M</h3>
+                                                <h3 className='text-3xl font-bold'>{ratingAvg}</h3>
                                             </div>
                                             <div className="text-left space-y-2 flex flex-col  ">
                                                 <img className='w-10' src={reviewIcon} alt="" />
-                                                <p className='text-[#9d9b9b]'>Downloads</p>
-                                                <h3 className='text-3xl font-bold'>29.6M</h3>
+                                                <p className='text-[#9d9b9b]'>Total Reviews</p>
+                                                <h3 className='text-3xl font-bold'>{reviews}</h3>
                                             </div>
 
                                         </div>

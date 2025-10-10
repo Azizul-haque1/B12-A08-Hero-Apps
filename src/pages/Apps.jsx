@@ -1,24 +1,24 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '../components/Container';
 import AppsCard from '../components/AppsCard';
 
 import useApps from '../hooks/useApps';
 import Loading from '../components/Loading';
+import AppError from './ErrorPage/AppError';
+
 
 
 const Apps = () => {
 
-    const [search, setSearch] = ('')
+    const [search, setSearch] = useState('')
     const { appsData, loading } = useApps()
 
+
     if (loading) return <Loading />
+    const actualValue = search.trim().toLowerCase()
+    const foundApps = actualValue ? appsData.filter(app => app.title.toLowerCase().includes(actualValue)) : appsData
 
-
-
-    const actualValue = search
-    const foundApps = actualValue ? appsData.filter(app => app.title.toLowerCase().includes(actualValue)) : appsData;
-    // search.to
 
     return (
 
@@ -44,26 +44,26 @@ const Apps = () => {
                                     <path d="m21 21-4.3-4.3"></path>
                                 </g>
                             </svg>
-                            <input value={search} onChange={(e) => setSearch(e.target.value.trim().toLowerCase())} type="search" required placeholder="Search" />
+                            <input value={search} onChange={(e) => setSearch(e.target.value)} type="search" placeholder="Search" />
                         </label>
 
                     </div>
 
-                    <div className=" grid grid-cols-1 md:grid-cols-3  lg:grid-cols-4 place-items-center space-y-8">
-                        {
-                            foundApps.map(app =>
-                                <AppsCard key={app.id} app={app}></AppsCard>)
-
-                        }
+                    {
+                        foundApps.length ?
 
 
-                    </div>
+                            <div className=" grid grid-cols-1 md:grid-cols-3  lg:grid-cols-4 place-items-center space-y-8">
+                                {
 
-                    <button className="text-center items-center mt-10 mb-20">
-                        {/* <Link to='/apps' className=" px-10 py-3  rounded-sm bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white  flex">Show All </Link> */}
+                                    foundApps.map(app =>
+                                        <AppsCard key={app.id} app={app}></AppsCard>)
+                                }
 
-                    </button>
 
+                            </div>
+                            : <AppError />
+                    }
                 </div >
             </Container>
 
