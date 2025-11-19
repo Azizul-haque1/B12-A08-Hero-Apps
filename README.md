@@ -1,47 +1,62 @@
-📱 Hero-Apps – React App Store UI
+# 🚀 Hero-Apps  
+### A Modern App Store Interface Built with React
 
-Hero-Apps is a fully responsive App Store–style web application built using React. Users can browse apps, search, view detailed information, install/uninstall apps through LocalStorage, and enjoy a smooth multi-page UI experience.
+Hero-Apps is a fully responsive, multi-page React application designed to simulate a modern App Store experience.  
+Users can browse apps, search in real time, view full details, install/uninstall apps using LocalStorage, and explore visual charts powered by Recharts.
 
-🔗 Live Demo: https://b12-a08-hero-apps-ah1.netlify.app/
+🔗 **Live Demo:** https://b12-a08-hero-apps-ah1.netlify.app/
 
-🚀 Features
+---
 
-Fully responsive design
+## ✨ Features
 
-Header with navigation + GitHub link
+### 🧭 Core Layout
+- Fully responsive UI  
+- Header with active navigation + GitHub link  
+- Creative custom footer  
+- Smooth loading animations  
 
-Home page with banner, stats, and top apps
+### 📱 App Browsing
+- Home page with banner, stats, and top apps  
+- All Apps page with:
+  - Live search (case-insensitive)  
+  - App count indicator  
+  - Real-time filtering  
 
-All Apps page with live search & filters
+### 📊 App Details
+- Full app information (image, rating, downloads, description)  
+- Install button with LocalStorage support  
+- Toast notifications  
+- Review chart created with **Recharts**  
 
-App Details page + install system + Recharts review graph
+### 📦 My Installation Page
+- Shows all installed apps  
+- One-click uninstall  
+- Sorting by download count (High → Low / Low → High)  
+- Instant UI and LocalStorage sync  
 
-My Installation page with uninstall + sort (High–Low / Low–High)
+### ⚠️ Error Handling
+- Custom 404 error page  
+- “No App Found” fallback  
+- Route reload support on Netlify
 
-Loading animations
+---
 
-Custom 404 page
+## 🛠️ Tech Stack
 
-Safe deployment with working route reload
+- **React.js**  
+- **React Router**  
+- **Recharts**  
+- **LocalStorage API**  
+- **CSS / Tailwind CSS**  
+- **Netlify (Deployment)**  
 
-🛠 Tech Stack
+---
 
-React.js
+## 📥 Installation & Setup
 
-React Router
-
-Recharts
-
-LocalStorage API
-
-CSS / Tailwind
-
-📥 Setup
-git clone <repository-url>
+```bash
+git clone <your-repository-url>
+cd hero-apps
 npm install
 npm run dev
-
-👤 Author
-
-Your Name
-GitHub: https://github.com/your-username
